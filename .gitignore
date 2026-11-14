@@ -1,0 +1,4 @@
+build/
+experiments/*/raw/
+*.o
+*.test
