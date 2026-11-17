@@ -2,6 +2,9 @@ build/
 experiments/*/raw/
 *.o
 *.test
-__pycache__/
 *.log
 *.DS_Store
+
+__pycache__/
+.clangd
+compile_commands.json
