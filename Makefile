@@ -47,7 +47,7 @@ ALL_OBJS := $(LIB_OBJS) $(APP_SRCS:%.cpp=$(OBJ)/%.o) $(TEST_SRCS:%.cpp=$(OBJ)/%.
 
 
 # ---------- Targets ----------
-.PHONY all apps tests test clean
+.PHONY: all apps tests test clean
 all: apps tests
 apps: $(APPS)
 tests: $(TESTS)
