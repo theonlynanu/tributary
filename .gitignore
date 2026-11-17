@@ -2,3 +2,6 @@ build/
 experiments/*/raw/
 *.o
 *.test
+__pycache__/
+*.log
+*.DS_Store
