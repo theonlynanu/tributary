@@ -1,6 +1,6 @@
 # Basic idea is for each .cpp file to be compiled and assembled into a .o file
 # under build/, matching the source tree 
-#		src/storage/segment.cpp -> build/obj/src/storage.segment.o
+#		src/storage/segment.cpp -> build/obj/src/storage/segment.o
 
 # Common commands I use (or think I might)
 # 	make -j4				Build everything 4 files at a time
@@ -28,6 +28,11 @@ else
     CXXFLAGS += -O2 -g
 endif
 
+ifdef SAN
+    CXXFLAGS += -fsanitize=$(SAN) -fno-omit-frame-pointer
+    LDFLAGS += -fsanitize=$(SAN)
+endif
+
 
 # ---------- Layout ----------
 BUILD := build
@@ -40,7 +45,7 @@ LIB_SRCS := $(shell find src -name '*.cpp')
 APP_SRCS := $(wildcard apps/*.cpp)
 TEST_SRCS := $(wildcard tests/test_*.cpp)
 
-LIB_OBJS := $(LIB_SRCS:%.cpp=$(OBJ)%.o)
+LIB_OBJS := $(LIB_SRCS:%.cpp=$(OBJ)/%.o)
 APPS := $(APP_SRCS:apps/%.cpp=$(BIN)/%)
 TESTS := $(TEST_SRCS:tests/%.cpp=$(TESTBIN)/%)
 ALL_OBJS := $(LIB_OBJS) $(APP_SRCS:%.cpp=$(OBJ)/%.o) $(TEST_SRCS:%.cpp=$(OBJ)/%.o)
@@ -66,6 +71,10 @@ $(LIB): $(LIB_OBJS)
 	ar rcs $@ $^
 
 $(OBJ)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BIN)/%: $(OBJ)/apps/%.o $(LIB)
 	@mkdir -p $(dir $@)
 	$(CXX) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
