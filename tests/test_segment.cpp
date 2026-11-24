@@ -1,6 +1,5 @@
 #include <cerrno>
 #include <cstdint>
-#include <ostream>
 #include <string>
 #include <vector>
 
@@ -10,26 +9,6 @@
 #include "test_util.h"
 
 namespace tributary {
-
-// Lets CHECK_EQ print a ScanStop when a check fails (see test_util.h for why
-// it lives in namespace tributary).
-std::ostream& operator<<(std::ostream& os, ScanStop s) {
-    switch (s) {
-        case ScanStop::kEndOfSegment:
-            return os << "kEndOfSegment";
-        case ScanStop::kStoppedByCallback:
-            return os << "kStoppedByCallback";
-        case ScanStop::kIncomplete:
-            return os << "kIncomplete";
-        case ScanStop::kCorrupt:
-            return os << "kCorrupt";
-        case ScanStop::kOffsetMismatch:
-            return os << "kOffsetMismatch";
-        case ScanStop::kIoError:
-            return os << "kIoError";
-    }
-    return os << "ScanStop(" << static_cast<int>(s) << ")";
-}
 
 namespace {
 

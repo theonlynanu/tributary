@@ -20,6 +20,7 @@
 #include <vector>
 
 #include "storage/record_batch.h"
+#include "storage/segment.h"
 
 namespace tributary {
 
@@ -141,6 +142,9 @@ inline void WriteFileBytes(const std::string& path,
             static_cast<std::streamsize>(data.size()));
 }
 
+/**
+ * Lets CHECK_EQ print a BatchStatus
+ */
 inline std::ostream& operator<<(std::ostream& os, BatchStatus s) {
     switch (s) {
         case BatchStatus::kOk:
@@ -152,6 +156,27 @@ inline std::ostream& operator<<(std::ostream& os, BatchStatus s) {
     }
 
     return os << "BatchStatus()" << static_cast<int>(s) << ")";
+}
+
+/**
+ * Lets CHECK_EQ print a ScanStop
+ */
+inline std::ostream& operator<<(std::ostream& os, ScanStop s) {
+    switch (s) {
+        case ScanStop::kEndOfSegment:
+            return os << "kEndOfSegment";
+        case ScanStop::kStoppedByCallback:
+            return os << "kStoppedByCallback";
+        case ScanStop::kIncomplete:
+            return os << "kIncomplete";
+        case ScanStop::kCorrupt:
+            return os << "kCorrupt";
+        case ScanStop::kOffsetMismatch:
+            return os << "kOffsetMismatch";
+        case ScanStop::kIoError:
+            return os << "kIoError";
+    }
+    return os << "ScanStop(" << static_cast<int>(s) << ")";
 }
 
 }  // namespace tributary
