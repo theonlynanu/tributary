@@ -1,3 +1,9 @@
+/**
+ * Helpers shared by tests that touch the filesystem.
+ *
+ * TempDir is a self-deleting temp directory. Other functions help test file
+ * damage.
+ */
 #pragma once
 
 #include <unistd.h>
@@ -12,6 +18,8 @@
 #include <string>
 #include <system_error>
 #include <vector>
+
+#include "storage/record_batch.h"
 
 namespace tributary {
 
@@ -131,6 +139,19 @@ inline void WriteFileBytes(const std::string& path,
     std::ofstream f(path, std::ios::binary | std::ios::trunc);
     f.write(reinterpret_cast<const char*>(data.data()),
             static_cast<std::streamsize>(data.size()));
+}
+
+inline std::ostream& operator<<(std::ostream& os, BatchStatus s) {
+    switch (s) {
+        case BatchStatus::kOk:
+            return os << "kOk";
+        case BatchStatus::kIncomplete:
+            return os << "kIncomplete";
+        case BatchStatus::kCorrupt:
+            return os << "kCorrupt";
+    }
+
+    return os << "BatchStatus()" << static_cast<int>(s) << ")";
 }
 
 }  // namespace tributary
