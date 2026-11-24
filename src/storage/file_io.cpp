@@ -10,23 +10,6 @@
 
 namespace tributary {
 
-void UniqueFd::reset(int fd) {
-    if (fd_ >= 0) {
-        // close can report EINTR, but the descriptor is released
-        // regardless. Retrying could close an unrelated descriptor.
-        ::close(fd_);
-    }
-    fd_ = fd;
-}
-
-UniqueFd OpenFile(const std::string& path, int flags, mode_t mode) {
-    int fd;
-    do {
-        fd = ::open(path.c_str(), flags | O_CLOEXEC, mode);
-    } while (fd < 0 && errno == EINTR);
-    return UniqueFd(fd);
-}
-
 bool WriteAll(int fd, const uint8_t* data, std::size_t n, uint64_t offset) {
     size_t done = 0;
     while (done < n) {
