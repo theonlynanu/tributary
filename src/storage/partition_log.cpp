@@ -313,7 +313,7 @@ ReadStatus PartitionLog::Read(int64_t offset, int64_t max_offset,
                 }
 
                 const bool first_batch = out->empty() && bytes == 0;
-                if (!first_segment &&
+                if (!first_batch &&
                     out->size() + bytes + h.total_size() > max_bytes) {
                     full = true;
                     return false;
