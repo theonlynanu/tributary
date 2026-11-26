@@ -84,7 +84,7 @@ class OffsetIndex {
     bool empty() const { return entries_.empty(); }
 
     int64_t segment_base_offset() const { return segment_base_offset_; }
-    uint32_t interval_bytes() const { return interval_bytes(); }
+    uint32_t interval_bytes() const { return interval_bytes_; }
 
    private:
     std::vector<Entry> entries_;

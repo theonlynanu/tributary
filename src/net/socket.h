@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "storage/file_io.h"
+#include "common/unique_fd.h"
 namespace tributary {
 
 /**
