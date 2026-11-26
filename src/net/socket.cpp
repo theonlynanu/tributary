@@ -6,8 +6,6 @@
 #include <sys/types.h>
 
 #include <cerrno>
-#include <cstddef>
-#include <ctime>
 
 namespace tributary {
 namespace {

@@ -4,19 +4,13 @@
 
 #include <algorithm>
 #include <cerrno>
-#include <cstdint>
 #include <cstring>
 #include <filesystem>
 #include <iterator>
-#include <memory>
-#include <string>
 #include <system_error>
-#include <vector>
+#include <utility>
 
 #include "storage/file_io.h"
-#include "storage/offset_index.h"
-#include "storage/record_batch.h"
-#include "storage/segment.h"
 
 namespace tributary {
 namespace {

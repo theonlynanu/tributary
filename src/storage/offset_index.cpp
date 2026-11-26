@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <cassert>
-#include <cstdint>
+#include <iterator>
 
 namespace tributary {
 

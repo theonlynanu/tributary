@@ -1,11 +1,9 @@
 #include "frame.h"
 
 #include <cerrno>
-#include <cstdint>
 #include <cstring>
 
 #include "common/bytes.h"
-#include "net/socket.h"
 
 namespace tributary {
 

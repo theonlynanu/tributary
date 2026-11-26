@@ -19,6 +19,7 @@
 
 #include "storage/offset_index.h"
 #include "storage/segment.h"
+
 namespace tributary {
 
 /**

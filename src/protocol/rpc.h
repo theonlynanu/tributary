@@ -8,6 +8,9 @@
  */
 #pragma once
 
+#include <cstdint>
+#include <vector>
+
 #include "net/frame.h"
 #include "net/socket.h"
 #include "protocol/messages.h"

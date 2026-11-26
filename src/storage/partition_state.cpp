@@ -1,5 +1,6 @@
 #include "partition_state.h"
 
+#include <cerrno>
 #include <filesystem>
 #include <vector>
 

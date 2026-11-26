@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 #include <cerrno>
-#include <chrono>
 #include <cstring>
 
 #include "common/unique_fd.h"

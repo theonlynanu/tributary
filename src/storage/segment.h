@@ -19,11 +19,13 @@
 #pragma once
 
 #include <cstdint>
+#include <cstddef>
 #include <functional>
 #include <memory>
 #include <string>
+#include <vector>
 
-#include "storage/file_io.h"
+#include "common/unique_fd.h"
 #include "storage/record_batch.h"
 
 namespace tributary {

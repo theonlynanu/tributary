@@ -1,6 +1,5 @@
 #include "messages.h"
 
-#include <cstdint>
 #include <utility>
 
 #include "common/bytes.h"

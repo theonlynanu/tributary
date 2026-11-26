@@ -2,7 +2,6 @@
 
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <unistd.h>
 
 #include <cassert>
@@ -12,6 +11,8 @@
 #include <filesystem>
 #include <limits>
 #include <utility>
+
+#include "storage/file_io.h"
 
 namespace tributary {
 
