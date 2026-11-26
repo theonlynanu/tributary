@@ -8,3 +8,4 @@ experiments/*/raw/
 __pycache__/
 .clangd
 compile_commands.json
+compile_flags.txt
